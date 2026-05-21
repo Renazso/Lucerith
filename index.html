@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Lucerith</title>
+
+  <!-- GOOGLE FONT -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Inter', sans-serif;
+    }
+
+    body{
+      background:#0b0f19;
+      color:white;
+      overflow-x:hidden;
+      position:relative;
+    }
+
+    /* GLOW BACKGROUND */
+
+    body::before{
+      content:"";
+      position:fixed;
+      width:500px;
+      height:500px;
+      background:rgba(88,101,242,0.15);
+      border-radius:50%;
+      top:-200px;
+      left:-150px;
+      filter:blur(100px);
+      z-index:-3;
+    }
+
+    body::after{
+      content:"";
+      position:fixed;
+      width:400px;
+      height:400px;
+      background:rgba(0,255,200,0.08);
+      border-radius:50%;
+      bottom:-150px;
+      right:-100px;
+      filter:blur(100px);
+      z-index:-3;
+    }
+
+    /* STARS */
+
+    .stars,
+    .stars2,
+    .stars3{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      pointer-events:none;
+      z-index:-2;
+    }
+
+    .stars{
+      background:
+        radial-gradient(2px 2px at 20px 30px, white, transparent),
+        radial-gradient(2px 2px at 100px 120px, white, transparent),
+        radial-gradient(1.5px 1.5px at 300px 80px, white, transparent),
+        radial-gradient(2px 2px at 500px 200px, white, transparent),
+        radial-gradient(2px 2px at 700px 150px, white, transparent),
+        radial-gradient(1.5px 1.5px at 900px 300px, white, transparent);
+
+      background-repeat:repeat;
+      background-size:1000px 600px;
+
+      animation:moveStars 120s linear infinite;
+
+      opacity:0.7;
+    }
+
+    .stars2{
+      background:
+        radial-gradient(1px 1px at 50px 50px, white, transparent),
+        radial-gradient(1px 1px at 250px 200px, white, transparent),
+        radial-gradient(1px 1px at 450px 100px, white, transparent),
+        radial-gradient(1px 1px at 800px 250px, white, transparent);
+
+      background-repeat:repeat;
+      background-size:1200px 800px;
+
+      animation:moveStars 180s linear infinite;
+
+      opacity:0.4;
+    }
+
+    .stars3{
+      background:
+        radial-gradient(3px 3px at 150px 120px, rgba(255,255,255,0.9), transparent),
+        radial-gradient(2px 2px at 600px 300px, rgba(255,255,255,0.8), transparent);
+
+      background-repeat:repeat;
+      background-size:1400px 900px;
+
+      animation:moveStars 240s linear infinite;
+
+      opacity:0.25;
+    }
+
+    @keyframes moveStars{
+
+      from{
+        transform:translateY(0);
+      }
+
+      to{
+        transform:translateY(-1000px);
+      }
+    }
+
+    /* NAVBAR */
+
+    nav{
+      width:100%;
+      padding:20px 8%;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      position:sticky;
+      top:0;
+
+      backdrop-filter:blur(12px);
+
+      background:rgba(11,15,25,0.7);
+
+      border-bottom:1px solid rgba(255,255,255,0.05);
+
+      z-index:1000;
+    }
+
+    .logo{
+      font-size:1.5rem;
+      font-weight:700;
+      color:#7c8cff;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:20px;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:#d6d6d6;
+      transition:0.2s;
+    }
+
+    .nav-links a:hover{
+      color:white;
+    }
+
+    /* HERO */
+
+    .hero{
+      min-height:90vh;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      text-align:center;
+
+      padding:0 8%;
+    }
+
+    .hero-content{
+      max-width:850px;
+    }
+
+    .hero h1{
+      font-size:4rem;
+      line-height:1.1;
+
+      margin-bottom:25px;
+    }
+
+    .gradient{
+      background:linear-gradient(135deg,#7c8cff,#00ffd0);
+
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .hero p{
+      color:#b7bfd1;
+
+      font-size:1.15rem;
+
+      line-height:1.8;
+
+      margin-bottom:40px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:14px 28px;
+
+      border:none;
+      border-radius:14px;
+
+      cursor:pointer;
+
+      font-weight:600;
+
+      transition:0.25s;
+    }
+
+    .primary-btn{
+      background:linear-gradient(135deg,#5865f2,#7c8cff);
+
+      color:white;
+
+      box-shadow:0 0 25px rgba(88,101,242,0.45);
+    }
+
+    .secondary-btn{
+      background:rgba(255,255,255,0.06);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      color:white;
+    }
+
+    .btn:hover{
+      transform:translateY(-3px);
+    }
+
+    /* FEATURES */
+
+    .features{
+      padding:100px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .section-title h2{
+      font-size:2.7rem;
+      margin-bottom:15px;
+    }
+
+    .section-title p{
+      color:#b7bfd1;
+    }
+
+    .feature-grid{
+      display:grid;
+
+      grid-template-columns:
+      repeat(auto-fit, minmax(250px, 1fr));
+
+      gap:25px;
+    }
+
+    .feature-card{
+      background:rgba(255,255,255,0.05);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      border-radius:24px;
+
+      padding:30px;
+
+      transition:0.3s;
+    }
+
+    .feature-card:hover{
+      transform:translateY(-6px);
+
+      border-color:rgba(124,140,255,0.4);
+    }
+
+    .feature-icon{
+      font-size:2rem;
+      margin-bottom:20px;
+    }
+
+    .feature-card h3{
+      margin-bottom:12px;
+    }
+
+    .feature-card p{
+      color:#b7bfd1;
+      line-height:1.6;
+    }
+
+    /* CTA */
+
+    .cta{
+      padding:120px 8%;
+      text-align:center;
+    }
+
+    .cta-box{
+      background:linear-gradient(
+        135deg,
+        rgba(88,101,242,0.15),
+        rgba(0,255,208,0.08)
+      );
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      border-radius:30px;
+
+      padding:70px 30px;
+
+      backdrop-filter:blur(20px);
+    }
+
+    .cta-box h2{
+      font-size:3rem;
+      margin-bottom:20px;
+    }
+
+    .cta-box p{
+      color:#c2c8d8;
+
+      margin-bottom:35px;
+
+      font-size:1.1rem;
+    }
+
+    footer{
+      padding:30px;
+
+      text-align:center;
+
+      color:#8b92a5;
+
+      border-top:1px solid rgba(255,255,255,0.05);
+    }
+
+    /* MOBILE */
+
+    @media(max-width:900px){
+
+      .hero h1{
+        font-size:3rem;
+      }
+
+      nav{
+        padding:18px 5%;
+      }
+
+      .hero,
+      .features,
+      .cta{
+        padding-left:5%;
+        padding-right:5%;
+      }
+    }
+
+    @media(max-width:600px){
+
+      .hero h1{
+        font-size:2.3rem;
+      }
+
+      .cta-box h2{
+        font-size:2rem;
+      }
+
+      .nav-links{
+        display:none;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- STARS -->
+
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <!-- NAVBAR -->
+
+  <nav>
+
+    <div class="logo">
+     Lucerith
+    </div>
+
+    <div class="nav-links">
+      <a href="#">Features</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <h1>
+        Study <span class="gradient">smarter</span>,
+        not harder.
+      </h1>
+
+      <p>
+        A modern student planner built for students who want
+        better grades without wasting time. Track assignments,
+        organize classes, optimize study sessions, and prepare
+        for exams more efficiently.
+      </p>
+
+      <div class="hero-buttons">
+
+        <button class="btn primary-btn">
+          Explore Features
+        </button>
+
+        <button class="btn secondary-btn">
+          Learn More
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FEATURES -->
+
+  <section class="features">
+
+    <div class="section-title">
+
+      <h2>
+        Why Students should Use Lucerith
+      </h2>
+
+      <p>
+        Built around efficiency, focus, and smarter studying.
+      </p>
+
+    </div>
+
+    <div class="feature-grid">
+
+      <div class="feature-card">
+
+        <div class="feature-icon">📊</div>
+
+        <h3>Grade Awareness</h3>
+
+        <p>
+          Understand which assignments and exams
+          actually impact your grade the most.
+        </p>
+
+      </div>
+
+      <div class="feature-card">
+
+        <div class="feature-icon">🧠</div>
+
+        <h3>Exam Analysis</h3>
+
+        <p>
+          Detect weak concepts, repeated mistakes,
+          and inefficient study habits.
+        </p>
+
+      </div>
+
+      <div class="feature-card">
+
+        <div class="feature-icon">⚡</div>
+
+        <h3>Smart Planning</h3>
+
+        <p>
+          Prioritize work based on urgency,
+          importance, and effort required.
+        </p>
+
+      </div>
+
+      <div class="feature-card">
+
+        <div class="feature-icon">🔁</div>
+
+        <h3>Adaptive Review</h3>
+
+        <p>
+          Automatically adjust review sessions
+          over time for better retention.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+
+  <section class="cta">
+
+    <div class="cta-box">
+
+      <h2>
+        Start organizing school better.
+      </h2>
+
+      <p>
+        Designed for students who want structure,
+        efficiency, and less stress.
+      </p>
+
+      <button class="btn primary-btn">
+        Coming Soon
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    © 2026 Lucerith — Smarter studying starts here.
+  </footer>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    const buttons = document.querySelectorAll(".btn");
+
+    buttons.forEach(button => {
+
+      button.addEventListener("mousemove", (e) => {
+
+        const rect = button.getBoundingClientRect();
+
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        button.style.backgroundPosition = `${x}px ${y}px`;
+      });
+    });
+
+  <script src="script.js"></script>
+</body>
+</html>
+
